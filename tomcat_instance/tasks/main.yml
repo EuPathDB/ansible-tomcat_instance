@@ -1,0 +1,17 @@
+- debug: var=tcif['{{ product }}'].tomcat_user
+
+- shell: |
+    make install \
+      INSTANCE='{{ product }}'                     \
+      HTTP_PORT='{{ tcif[product].http_port }}'    \
+      AJP13_PORT='{{ tcif[product].ajp13_port }}'  \
+      JMX_PORT='{{ tcif[product].jmx_port }}'      \
+      TOMCAT_USER='{{ tcif[product].tomcat_user }}'\
+      TEMPLATE='{{ tcif[product].template_ver }}'
+  args:
+    chdir: /usr/local/tomcat_instances
+    creates: '/usr/local/tomcat_instances/{{ product }}'
+  register: make
+  sudo: yes
+
+- debug: var=make      
