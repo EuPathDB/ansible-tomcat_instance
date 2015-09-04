@@ -1,0 +1,11 @@
+- name: instance start
+  shell: instance_manager start '{{ product }}'
+  sudo: yes
+
+- name: instance stop
+  shell: instance_manager stop '{{ product }}'
+  sudo: yes
+
+- name: instance forcestop
+  shell: instance_manager stop '{{ product }}' force
+  sudo: yes

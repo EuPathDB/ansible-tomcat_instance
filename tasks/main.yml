@@ -1,5 +1,3 @@
-- debug: var=tcif['{{ product }}'].tomcat_user
-
 - shell: |
     make install \
       INSTANCE='{{ product }}'                     \
@@ -13,5 +11,4 @@
     creates: '/usr/local/tomcat_instances/{{ product }}'
   register: make
   sudo: yes
-
-- debug: var=make      
+  notify: instance start
